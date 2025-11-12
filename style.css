@@ -1,6 +1,6 @@
 /* ==========================================================================
    PRERANA WALDORF SHAKESPEARE DRAMA – FINAL STYLE.CSS
-   NOV 12, 2025 – 06:50 AM IST | COUNTDOWN IN NAV | PRIVACY MODE (x)
+   NOV 12, 2025 – 07:03 PM IST | COUNTDOWN BUTTON IN NAV | PRIVACY MODE (x)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
@@ -70,14 +70,14 @@ nav a {
 nav a:hover { background:linear-gradient(45deg, #D4A574, #B89468); color:#F5F0E6; transform:translateY(-10px) rotate(2deg); }
 body.dark nav a { background:linear-gradient(45deg, #2C2C2C, #1A1A1A); color:#E8D5B7; border-color:#D4AF37; }
 
-/* NAV COUNTDOWN – LIVE IN HEADER */
+/* COUNTDOWN BUTTON IN NAV */
 .nav-countdown {
     background: linear-gradient(45deg, #D4AF37, #8B9A46) !important;
     color: #F5F0E6 !important;
     border: 5px solid #F5F0E6 !important;
     font-weight: 700 !important;
-    font-size: 1.4em !important;
-    padding: 18px 35px !important;
+    font-size: 1.7em !important;
+    padding: 22px 45px !important;
     animation: pulseGlow 3s infinite alternate;
     box-shadow: 0 0 30px rgba(212,175,55,0.6), inset 0 2px 8px rgba(255,255,255,0.3);
 }
@@ -97,11 +97,6 @@ body.dark .nav-countdown {
 }
 body.dark .nav-countdown:hover {
     box-shadow: 0 0 50px rgba(139,154,70,0.8) !important;
-}
-#navTimer {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    letter-spacing: 1px;
 }
 
 /* MAIN */
@@ -231,8 +226,7 @@ body.dark .cast-item p { background:#2C2C2C; color:#E8D5B7; }
     .countdown-timer span { font-size: 2.6em; }
     .countdown-timer p { font-size: 1.2em; }
     .countdown-date { font-size: 1.5em; }
-    .nav-countdown { font-size: 1.2em !important; padding: 15px 25px !important; }
-    #navTimer { font-size: 0.9em; }
+    .nav-countdown { font-size: 1.4em !important; padding: 18px 32px !important; }
 }
 @media (max-width:480px) {
     .logo h1 { font-size:3.2em !important; }
@@ -243,5 +237,5 @@ body.dark .cast-item p { background:#2C2C2C; color:#E8D5B7; }
     .countdown-timer { gap: 20px; }
     .countdown-timer > div { width: 110px; padding: 22px 15px; }
     .countdown-timer span { font-size: 2.2em; }
-    .nav-countdown { width: 80%; margin: 0 auto; font-size: 1.3em !important; }
+    .nav-countdown { width: 80%; margin: 0 auto; font-size: 1.4em !important; }
 }
