@@ -13,14 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // COUNTDOWN TARGET: 30 NOV 2025 5:30 PM IST
     const countdownDate = new Date('2025-11-30T17:30:00+05:30').getTime();
 
-    // MAIN COUNTDOWN
-    const updateMainCountdown = () => {
+    // MAIN COUNTDOWN (FULL SECTION)
+    const updateCountdown = () => {
         const now = new Date().getTime();
         const distance = countdownDate - now;
 
         if (distance < 0) {
             document.getElementById('countdown').innerHTML = '<p style="grid-column:1/-1;font-size:2em;color:#D4A574;">The Show Has Begun!</p>';
-            document.getElementById('navTimer').textContent = 'Showtime!';
             return;
         }
 
@@ -35,32 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
     };
 
-    // NAV COUNTDOWN
-    const updateNavTimer = () => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
-
-        if (distance < 0) {
-            document.getElementById('navTimer').textContent = 'Showtime!';
-            return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById('navTimer').textContent = 
-            `${days}d ${hours.toString().padStart(2,'0')}h ${minutes.toString().padStart(2,'0')}m ${seconds.toString().padStart(2,'0')}s`;
-    };
-
-    // UPDATE BOTH EVERY SECOND
-    setInterval(() => {
-        updateMainCountdown();
-        updateNavTimer();
-    }, 1000);
-    updateMainCountdown();
-    updateNavTimer();
+    // UPDATE EVERY SECOND
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
     // IMAGE ZOOM ON CLICK
     document.querySelectorAll('.cast-item img').forEach(img => {
