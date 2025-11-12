@@ -1,6 +1,6 @@
 /* ==========================================================================
    PRERANA WALDORF SHAKESPEARE DRAMA – FINAL STYLE.CSS
-   NOV 11, 2025 – 06:15 PM IST | Earth Tones | Organic | 8 Video Links
+   NOV 12, 2025 – 06:50 AM IST | COUNTDOWN IN NAV | PRIVACY MODE (x)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
@@ -22,7 +22,7 @@ body.dark {
     color: #E8D5B7;
 }
 
-/* DARK MODE TOGGLE – WOODEN BUTTON */
+/* DARK MODE TOGGLE */
 .dark-mode-toggle {
     position: fixed; top:20px; right:20px; background:linear-gradient(#D4A574, #B89468);
     color:#5A4E3A; padding:16px 32px; border-radius:50px; z-index:9999; font-weight:600;
@@ -35,7 +35,7 @@ body.dark .dark-mode-toggle { background:linear-gradient(#1A1A1A, #2C2C2C); colo
 .dark-mode-toggle input { display:none; }
 .dark-mode-toggle label { cursor:pointer; }
 
-/* HEADER – THEATRICAL CURTAIN */
+/* HEADER */
 header {
     background: linear-gradient(to bottom, #8B9A46 0%, #6B7D3A 100%);
     padding:70px 30px; text-align:center; border-bottom:20px solid #D4AF37;
@@ -59,7 +59,7 @@ body.dark header { background:linear-gradient(to bottom, #1A1A1A 0%, #2C2C2C 100
 @keyframes curtainRise { 0%{transform:translateY(0);} 50%{transform:translateY(-15px);} 100%{transform:translateY(0);} }
 body.dark .logo h1 { color:#E8D5B7; text-shadow:0 0 25px #2C2C2C, 0 0 50px #D4AF37, 0 0 75px #8B9A46, 3px 3px 0 #000; }
 
-/* NAV – HANDCRAFTED TABS */
+/* NAV */
 nav { display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-top:40px; padding:0 25px; }
 nav a {
     background:linear-gradient(45deg, #F5F0E6, #EDE4D9); color:#5A4E3A; padding:22px 45px;
@@ -69,6 +69,40 @@ nav a {
 }
 nav a:hover { background:linear-gradient(45deg, #D4A574, #B89468); color:#F5F0E6; transform:translateY(-10px) rotate(2deg); }
 body.dark nav a { background:linear-gradient(45deg, #2C2C2C, #1A1A1A); color:#E8D5B7; border-color:#D4AF37; }
+
+/* NAV COUNTDOWN – LIVE IN HEADER */
+.nav-countdown {
+    background: linear-gradient(45deg, #D4AF37, #8B9A46) !important;
+    color: #F5F0E6 !important;
+    border: 5px solid #F5F0E6 !important;
+    font-weight: 700 !important;
+    font-size: 1.4em !important;
+    padding: 18px 35px !important;
+    animation: pulseGlow 3s infinite alternate;
+    box-shadow: 0 0 30px rgba(212,175,55,0.6), inset 0 2px 8px rgba(255,255,255,0.3);
+}
+.nav-countdown:hover {
+    transform: translateY(-8px) scale(1.05) !important;
+    box-shadow: 0 0 50px rgba(212,175,55,0.8) !important;
+}
+@keyframes pulseGlow {
+    from { box-shadow: 0 0 30px rgba(212,175,55,0.6), inset 0 2px 8px rgba(255,255,255,0.3); }
+    to { box-shadow: 0 0 45px rgba(212,175,55,0.9), inset 0 2px 12px rgba(255,255,255,0.5); }
+}
+body.dark .nav-countdown {
+    background: linear-gradient(45deg, #8B9A46, #D4AF37) !important;
+    color: #2C2C2C !important;
+    border-color: #E8D5B7 !important;
+    box-shadow: 0 0 30px rgba(139,154,70,0.6), inset 0 2px 8px rgba(0,0,0,0.2);
+}
+body.dark .nav-countdown:hover {
+    box-shadow: 0 0 50px rgba(139,154,70,0.8) !important;
+}
+#navTimer {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 
 /* MAIN */
 main { padding:90px 30px; max-width:1600px; margin:0 auto; }
@@ -90,7 +124,7 @@ body.dark section h2::after { background:linear-gradient(to right, #8B9A46, #D4A
 }
 body.dark .about { background:linear-gradient(135deg, rgba(44,44,44,0.98), rgba(26,26,26,0.98)); border-color:#D4AF37; }
 
-/* SECRET LIBRARY – 8 VIDEO LINKS ONLY */
+/* SECRET LIBRARY – 8 LINKS */
 .secret-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -130,37 +164,7 @@ body.dark .secret-link:hover {
     color: #2C2C2C;
 }
 
-/* CAST GRID – SUPPORTS 60+ ITEMS */
-.cast-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:50px; padding:0 40px; margin-bottom:80px; }
-.cast-item {
-    background:linear-gradient(135deg, #F5F0E6, #EDE4D9); border-radius:50px; overflow:hidden;
-    box-shadow:0 35px 100px rgba(212,164,116,0.4); transition:all 0.6s ease; border:6px solid #D4AF37;
-}
-.cast-item:hover { transform:translateY(-35px) rotate(1deg); box-shadow:0 45px 120px rgba(139,154,70,0.5); }
-body.dark .cast-item { background:linear-gradient(135deg, #2C2C2C, #1A1A1A); border-color:#8B9A46; }
-.cast-item img { width:100%; height:350px; object-fit:cover; border:18px solid #8B9A46; border-radius:45px; }
-body.dark .cast-item img { border-color:#D4AF37; }
-.cast-item p { text-align:center; padding:30px; font-size:1.8em; font-weight:600; color:#5A4E3A; background:#F5F0E6; font-family:'Playfair Display', serif; }
-body.dark .cast-item p { background:#2C2C2C; color:#E8D5B7; }
-
-/* MOBILE PERFECTION */
-@media (max-width:768px) {
-    .logo h1 { font-size:4em !important; }
-    nav { gap:25px !important; }
-    nav a { padding:18px 32px !important; font-size:1.4em !important; }
-    section h2 { font-size:3em !important; }
-    .about { padding:45px !important; font-size:1.6em !important; }
-    .cast-grid, .secret-links { grid-template-columns:1fr 1fr !important; gap:35px !important; padding:0 25px !important; }
-    .cast-item img { height:220px !important; border-width:14px !important; }
-    .secret-link { font-size:1.5em !important; padding:28px 15px !important; }
-}
-@media (max-width:480px) {
-    .logo h1 { font-size:3.2em !important; }
-    .cast-grid, .secret-links { grid-template-columns:1fr !important; }
-    .cast-item img { height:200px !important; }
-    .secret-link { font-size:1.4em !important; }
-}
-/* LIVE COUNTDOWN – WALDOFF ELEGANCE */
+/* LIVE COUNTDOWN – MAIN SECTION */
 .countdown-section {
     text-align: center; padding: 80px 30px; max-width: 1100px; margin: 0 auto 100px;
 }
@@ -200,16 +204,44 @@ body.dark .countdown-timer span { color: #E8D5B7; }
 body.dark .countdown-timer p { color: #D4AF37; }
 body.dark .countdown-date { color: #E8D5B7; }
 
+/* CAST GRID */
+.cast-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:50px; padding:0 40px; margin-bottom:80px; }
+.cast-item {
+    background:linear-gradient(135deg, #F5F0E6, #EDE4D9); border-radius:50px; overflow:hidden;
+    box-shadow:0 35px 100px rgba(212,164,116,0.4); transition:all 0.6s ease; border:6px solid #D4AF37;
+}
+.cast-item:hover { transform:translateY(-35px) rotate(1deg); box-shadow:0 45px 120px rgba(139,154,70,0.5); }
+body.dark .cast-item { background:linear-gradient(135deg, #2C2C2C, #1A1A1A); border-color:#8B9A46; }
+.cast-item img { width:100%; height:350px; object-fit:cover; border:18px solid #8B9A46; border-radius:45px; }
+body.dark .cast-item img { border-color:#D4AF37; }
+.cast-item p { text-align:center; padding:30px; font-size:1.8em; font-weight:600; color:#5A4E3A; background:#F5F0E6; font-family:'Playfair Display', serif; }
+body.dark .cast-item p { background:#2C2C2C; color:#E8D5B7; }
+
 /* MOBILE */
 @media (max-width:768px) {
+    .logo h1 { font-size:4em !important; }
+    nav a { padding:18px 32px !important; font-size:1.4em !important; }
+    section h2 { font-size:3em !important; }
+    .about { padding:45px !important; font-size:1.6em !important; }
+    .cast-grid, .secret-links { grid-template-columns:1fr 1fr !important; gap:35px !important; padding:0 25px !important; }
+    .cast-item img { height:220px !important; border-width:14px !important; }
+    .secret-link { font-size:1.5em !important; padding:28px 15px !important; }
     .countdown-timer { gap: 25px; }
     .countdown-timer > div { width: 130px; padding: 28px 18px; }
     .countdown-timer span { font-size: 2.6em; }
     .countdown-timer p { font-size: 1.2em; }
     .countdown-date { font-size: 1.5em; }
+    .nav-countdown { font-size: 1.2em !important; padding: 15px 25px !important; }
+    #navTimer { font-size: 0.9em; }
 }
 @media (max-width:480px) {
+    .logo h1 { font-size:3.2em !important; }
+    nav { flex-direction: column; gap: 20px !important; }
+    .cast-grid, .secret-links { grid-template-columns:1fr !important; }
+    .cast-item img { height:200px !important; }
+    .secret-link { font-size:1.4em !important; }
     .countdown-timer { gap: 20px; }
     .countdown-timer > div { width: 110px; padding: 22px 15px; }
     .countdown-timer span { font-size: 2.2em; }
+    .nav-countdown { width: 80%; margin: 0 auto; font-size: 1.3em !important; }
 }
