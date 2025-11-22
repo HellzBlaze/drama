@@ -3,30 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Behind The Scenes #1</title>
+    <title>Rehearsal Day 1 | 8th Grade Drama</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="dark-mode-toggle">
-        <input type="checkbox" id="darkMode">
-        <label for="darkMode">Dark Mode</label>
+        <input type="checkbox" id="darkMode"><label for="darkMode">Dark Mode</label>
     </div>
-
-    <div class="video-page-container">
-        <h1 class="video-main-title">HTML5 VIDEO</h1>
-        <div class="video-wrapper">
-            <video controls autoplay muted playsinline id="mainVideo">
-                <source src="video1.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
-            </video>
-        </div>
-        <div class="video-info">
-            <h2>Behind The Scenes #1</h2>
-            <p>Romeo & Juliet Rehearsal • 8A Drama Team</p>
-            <p class="back-link"><a href="index.html#secret">Back to Secret Library</a></p>
-        </div>
-    </div>
-
+    <header><div class="logo"><h1>Rehearsal Day 1 – First Chaos</h1></div>
+        <nav><a href="index.html">Back to Main</a></nav>
+    </header>
+    <main style="text-align:center; padding:40px 20px;">
+        <video controls style="max-width:100%; border-radius:50px; border:20px double #D4AF37; box-shadow:0 40px 100px rgba(212,175,55,.4);">
+            <source src="vid1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
