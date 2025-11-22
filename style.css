@@ -207,3 +207,33 @@ body.dark .video-wrapper::before { color: rgba(232,213,183,0.9); text-shadow: 0 
     }
     .video-wrapper::before { font-size: 4em; }
 }
+
+/* FOOTER BACK BUTTON – ALL INDIVIDUAL PAGES */
+.page-footer {
+    text-align: center;
+    padding: 80px 20px 120px;
+    margin-top: 60px;
+}
+.back-to-main {
+    display: inline-block;
+    background: linear-gradient(45deg, #D4AF37, #8B9A46);
+    color: #F5F0E6;
+    padding: 20px 50px;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-decoration: none;
+    border: 6px solid #F5F0E6;
+    box-shadow: 0 20px 60px rgba(212,175,55,0.5);
+    transition: all 0.5s ease;
+}
+.back-to-main:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 30px 80px rgba(212,175,55,0.7);
+}
+body.dark .back-to-main {
+    background: linear-gradient(45deg, #8B9A46, #D4AF37);
+    color: #2C2C2C;
+    border-color: #E8D5B7;
+}
