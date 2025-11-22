@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Behind The Scenes #1</title>
+    <title>Brochure | 8th Grade Drama</title>
     <link rel="stylesheet" href="style.css">
+    <style>@media print { body { display:none; } }</style>
 </head>
 <body>
     <div class="dark-mode-toggle">
-        <input type="checkbox" id="darkMode">
-        <label for="darkMode">Dark Mode</label>
+        <input type="checkbox" id="darkMode"><label for="darkMode">Dark Mode</label>
     </div>
-
-    <div class="video-page-container">
-        <h1 class="video-main-title">HTML5 VIDEO</h1>
-        <div class="video-wrapper">
-       <img src="bro1.jpg" alt="Brochure Page 1">
-            <img src="bro2.jpg" alt="Brochure Page 2">
+    <header><div class="logo"><h1>Brochure</h1></div>
+        <nav><a href="index.html">Back to Main</a></nav>
+    </header>
+    <main style="text-align:center; padding:60px 20px;">
+        <h2>Brochure (Print Ready)</h2>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:80px; margin:60px 20px;">
+            <img src="bro1.jpg" alt="Front" style="max-width:900px; width:100%; border-radius:50px; border:20px double #8B9A46; box-shadow:0 40px 100px rgba(139,154,70,.4);">
+            <img src="bro2.jpg" alt="Back" style="max-width:900px; width:100%; border-radius:50px; border:20px double #8B9A46; box-shadow:0 40px 100px rgba(139,154,70,.4);">
         </div>
-        <div class="video-info">
-            <h2>Behind The Scenes #1</h2>
-            <p>Romeo & Juliet Rehearsal • 8A Drama Team</p>
-            <p class="back-link"><a href="index.html#secret">Back to Secret Library</a></p>
-        </div>
-    </div>
-
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
