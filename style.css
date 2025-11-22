@@ -141,3 +141,69 @@ main img[alt*="Brochure"] { border-color:#8B9A46; box-shadow:0 40px 100px rgba(1
     .cast-nav-btn { font-size:1.4em; padding:18px 30px; }
     .cast-item img { height:280px; }
 }
+/* ——— VIDEO PLAYER – WALDORF STYLE ——— */
+video {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: 50px;
+    border: 20px double #D4AF37;
+    box-shadow: 0 40px 120px rgba(212,175,55,0.45);
+    background: #000;
+    outline: none;
+    transition: all 0.6s ease;
+}
+video:hover {
+    border-color: #F5F0E6;
+    box-shadow: 0 50px 140px rgba(212,175,55,0.65);
+    transform: translateY(-8px);
+}
+
+/* Dark Mode */
+body.dark video {
+    border-color: #8B9A46;
+    box-shadow: 0 40px 120px rgba(139,154,70,0.5);
+}
+body.dark video:hover {
+    border-color: #E8D5B7;
+    box-shadow: 0 50px 140px rgba(139,154,70,0.7);
+}
+
+/* Full-width centered container for videos (used in vid1.html etc.) */
+.video-container {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Optional: Add a golden play button overlay (pure CSS) */
+.video-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.video-wrapper::before {
+    content: "▶";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6em;
+    color: rgba(245,240,230,0.9);
+    text-shadow: 0 0 40px #D4AF37;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 2;
+    transition: all 0.4s ease;
+}
+.video-wrapper:hover::before { opacity: 0.9; transform: translate(-50%, -50%) scale(1.15); }
+body.dark .video-wrapper::before { color: rgba(232,213,183,0.9); text-shadow: 0 0 40px #8B9A46; }
+
+/* Mobile */
+@media (max-width:768px) {
+    video {
+        border-width: 14px;
+        border-radius: 40px;
+    }
+    .video-wrapper::before { font-size: 4em; }
+}
