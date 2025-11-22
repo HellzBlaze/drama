@@ -237,3 +237,32 @@ body.dark .back-to-main {
     color: #2C2C2C;
     border-color: #E8D5B7;
 }
+/* BACK TO TOP BUTTON – CAST SECTION */
+.back-to-top {
+    display: block;
+    margin: 100px auto 60px;
+    text-align: center;
+}
+.back-to-top a {
+    display: inline-block;
+    background: linear-gradient(45deg, #D4AF37, #8B9A46);
+    color: #F5F0E6;
+    padding: 20px 50px;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    font-weight: 700;
+    text-decoration: none;
+    border: 6px solid #F5F0E6;
+    box-shadow: 0 20px 60px rgba(212,175,55,0.5);
+    transition: all 0.5s ease;
+}
+.back-to-top a:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 30px 80px rgba(212,175,55,0.7);
+}
+body.dark .back-to-top a {
+    background: linear-gradient(45deg, #8B9A46, #D4AF37);
+    color: #2C2C2C;
+    border-color: #E8D5B7;
+}
