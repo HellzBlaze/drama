@@ -1,174 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Dark Mode Logic
+    const dm = document.getElementById('darkMode');
+    if (localStorage.getItem('darkMode') === 'enabled') { 
+        document.body.classList.add('dark'); 
+        if(dm) dm.checked = true; 
+    }
+    if(dm) {
+        dm.addEventListener('change', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', dm.checked ? 'enabled' : 'disabled');
+        });
+    }
 
-/* --- 1. GLOBAL RESET & BASE --- */
-* { margin:0; padding:0; box-sizing:border-box; }
+    // 2. Countdown Logic
+    const countdownEl = document.getElementById('countdown');
+    if (countdownEl) {
+        const countdownDate = new Date('2025-11-30T17:30:00+05:30').getTime();
+        const updateCountdown = () => {
+            const distance = countdownDate - new Date().getTime();
+            if (distance < 0) {
+                countdownEl.innerHTML = '<p style="grid-column:1/-1;font-size:2.5em;color:#D4A574;">The Show Has Begun!</p>';
+                return;
+            }
+            const days = Math.floor(distance / (1000*60*60*24));
+            const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+            const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+            const seconds = Math.floor((distance % (1000*60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2,'0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2,'0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2,'0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2,'0');
+        };
+        setInterval(updateCountdown, 1000); 
+        updateCountdown();
+    }
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(to bottom, #F5F0E6 0%, #EDE4D9 100%);
-    color: #5A4E3A;
-    line-height: 1.8;
-    transition: all 0.6s ease;
-    overflow-x: hidden;
+    // 3. ENHANCED IMAGE ZOOM (Cast + Brochure + Invitation)
+    const imagesToZoom = document.querySelectorAll('.cast-item img, .zoomable');
+
+    imagesToZoom.forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.title = "Click to View Full Size";
+        
+        img.onclick = (e) => {
+            e.preventDefault();
+            
+            // Create Overlay
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed; inset: 0; 
+                background: rgba(0,0,0,0.95); 
+                display: flex; align-items: center; justify-content: center; 
+                z-index: 99999; cursor: zoom-out; opacity: 0; transition: opacity 0.3s;
+            `;
+
+            // Create Large Image
+            const big = new Image(); 
+            big.src = img.src;
+            big.style.cssText = `
+                max-width: 95%; max-height: 95%; 
+                border: 10px solid #D4AF37; border-radius: 20px; 
+                box-shadow: 0 0 50px rgba(212,175,55,0.5);
+                transform: scale(0.9); transition: transform 0.3s;
+            `;
+
+            overlay.appendChild(big); 
+            document.body.appendChild(overlay);
+
+            requestAnimationFrame(() => {
+                overlay.style.opacity = '1';
+                big.style.transform = 'scale(1)';
+            });
+
+            overlay.onclick = () => {
+                overlay.style.opacity = '0';
+                big.style.transform = 'scale(0.9)';
+                setTimeout(() => overlay.remove(), 300);
+            };
+        };
+    });
+});
+
+// 4. VIDEO FULLSCREEN HELPER
+function toggleFullScreen(videoId) {
+    const video = document.getElementById(videoId);
+    if (!video) return;
+    
+    if (video.requestFullscreen) {
+        video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) { /* Safari */
+        video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) { /* IE11 */
+        video.msRequestFullscreen();
+    }
 }
-body.dark { background: linear-gradient(to bottom, #2C2C2C 0%, #1A1A1A 100%); color: #E8D5B7; }
-
-/* --- 2. DARK MODE TOGGLE --- */
-.dark-mode-toggle {
-    position: fixed; top:20px; right:20px; background:linear-gradient(#D4A574,#B89468);
-    color:#5A4E3A; padding:16px 32px; border-radius:50px; z-index:9999; font-weight:600;
-    font-size:1.1em; box-shadow:0 12px 40px rgba(212,164,116,0.4); border:4px solid #8B9A46;
-    animation:softPulse 4s infinite alternate; backdrop-filter:blur(20px);
-}
-@keyframes softPulse { from{transform:scale(1);} to{transform:scale(1.02);} }
-body.dark .dark-mode-toggle { background:linear-gradient(#1A1A1A,#2C2C2C); color:#E8D5B7; border-color:#D4AF37; }
-.dark-mode-toggle input { display:none; }
-.dark-mode-toggle label { cursor:pointer; }
-
-/* --- 3. HEADER & LOGO --- */
-header {
-    background: linear-gradient(to bottom, #8B9A46 0%, #6B7D3A 100%);
-    padding:70px 30px; text-align:center; border-bottom:20px solid #D4AF37;
-    box-shadow:0 25px 80px rgba(139,154,70,0.4); position:relative; overflow:hidden;
-    border-radius:0 0 40px 40px;
-}
-header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(212,175,55,0.15),transparent 70%); pointer-events:none; }
-body.dark header { background:linear-gradient(to bottom,#1A1A1A,#2C2C2C); border-color:#D4AF37; }
-
-.logo h1 {
-    font-family: 'Playfair Display', serif;
-    font-size:6.2em; font-weight:700; color:#F5F0E6;
-    text-shadow:0 0 25px #D4AF37, 0 0 50px #8B9A46, 0 0 75px #D4AF37, 4px 4px 0 #5A4E3A;
-    margin:0; letter-spacing:5px; animation:curtainRise 5s ease-in-out infinite;
-}
-@keyframes curtainRise { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
-body.dark .logo h1 { color:#E8D5B7; text-shadow:0 0 25px #2C2C2C, 0 0 50px #D4AF37, 0 0 75px #8B9A46; }
-
-/* --- 4. NAVIGATION --- */
-nav { display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-top:40px; }
-nav a {
-    background:linear-gradient(45deg,#F5F0E6,#EDE4D9); color:#5A4E3A; padding:22px 45px;
-    border-radius:50px; text-decoration:none; font-weight:600; font-size:1.7em;
-    box-shadow:0 18px 45px rgba(212,164,116,0.4); border:5px solid #8B9A46;
-    font-family:'Playfair Display',serif; transition:all 0.5s;
-}
-nav a:hover { background:linear-gradient(45deg,#D4A574,#B89468); color:#F5F0E6; transform:translateY(-10px) rotate(2deg); }
-body.dark nav a { background:linear-gradient(45deg,#2C2C2C,#1A1A1A); color:#E8D5B7; border-color:#D4AF37; }
-
-.nav-countdown { background:linear-gradient(45deg,#D4AF37,#8B9A46)!important; color:#F5F0E6!important; border-color:#F5F0E6!important; animation:pulseGlow 3s infinite alternate; }
-@keyframes pulseGlow { from{box-shadow:0 0 30px rgba(212,175,55,0.6);} to{box-shadow:0 0 45px rgba(212,175,55,0.9);} }
-
-/* --- 5. MAIN CONTENT & TYPOGRAPHY --- */
-main { padding:90px 30px; max-width:1600px; margin:0 auto; }
-section h2 {
-    font-family: 'Playfair Display', serif; font-size:4.2em; color:#D4A574;
-    text-align:center; margin:80px 0 60px; text-shadow:0 0 25px rgba(212,164,116,0.5);
-    letter-spacing:2px;
-}
-section h2::after { content:''; display:block; width:140px; height:8px; background:linear-gradient(to right,#D4AF37,#8B9A46); margin:25px auto 0; border-radius:4px; }
-
-.about { background:linear-gradient(135deg,rgba(245,240,230,0.95),rgba(237,228,217,0.95)); padding:60px; border-radius:50px; text-align:center; font-size:1.8em; border:16px double #8B9A46; max-width:1200px; margin:0 auto 100px; box-shadow:0 30px 90px rgba(139,154,70,0.3); backdrop-filter:blur(15px); }
-body.dark .about { background:linear-gradient(135deg,rgba(44,44,44,0.98),rgba(26,26,26,0.98)); border-color:#D4AF37; }
-
-/* --- 6. BUTTONS (View Options & Cast Nav) --- */
-/* Merged styles so 'view-btn' looks just like your original Cast buttons */
-.cast-nav, .view-options { text-align:center; margin:80px auto 60px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
-
-.cast-nav-btn, .view-btn {
-    display: inline-block;
-    background:linear-gradient(45deg,#D4AF37,#8B9A46); color:#F5F0E6; padding:20px 40px; border-radius:50px;
-    font-family:'Playfair Display',serif; font-size:1.7em; font-weight:700; text-decoration:none;
-    border:5px solid #F5F0E6; box-shadow:0 15px 45px rgba(212,175,55,0.4); transition:all 0.5s;
-    cursor: pointer;
-}
-.cast-nav-btn:hover, .view-btn:hover { transform:translateY(-10px) scale(1.05); }
-
-/* --- 7. SECRET LIBRARY & LINKS --- */
-.secret-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; padding:0 40px; max-width:1200px; margin:0 auto 100px; }
-.secret-link {
-    background:linear-gradient(135deg,rgba(245,240,230,0.97),rgba(237,228,217,0.97));
-    color:#5A4E3A; padding:35px 20px; border-radius:50px; text-align:center;
-    font-family:'Playfair Display',serif; font-size:1.7em; font-weight:600;
-    text-decoration:none; border:8px double #8B9A46;
-    box-shadow:0 25px 70px rgba(139,154,70,0.3); transition:all 0.5s ease;
-    backdrop-filter:blur(15px);
-}
-.secret-link:hover { background:linear-gradient(135deg,#D4A574,#B89468); color:#F5F0E6; transform:translateY(-12px) scale(1.03); }
-body.dark .secret-link { background:linear-gradient(135deg,rgba(44,44,44,0.98),rgba(26,26,26,0.98)); color:#E8D5B7; border-color:#D4AF37; }
-
-/* Special Link Colors */
-.invitation-link { background:linear-gradient(135deg,#D4AF37,#B89468)!important; color:#F5F0E6!important; border-color:#F5F0E6!important; font-weight:700; }
-.brochure-link   { background:linear-gradient(135deg,#8B9A46,#6B7D3A)!important; color:#F5F0E6!important; border-color:#D4AF37!important; font-weight:700; }
-body.dark .invitation-link, body.dark .brochure-link { color:#2C2C2C!important; }
-
-/* --- 8. COUNTDOWN --- */
-.countdown-section { text-align:center; padding:80px 30px; max-width:1100px; margin:0 auto 100px; }
-.countdown-timer { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; }
-.countdown-timer > div {
-    background:linear-gradient(135deg,rgba(245,240,230,0.97),rgba(237,228,217,0.97));
-    padding:35px 25px; border-radius:50px; width:160px; box-shadow:0 25px 70px rgba(139,154,70,0.3);
-    border:8px double #8B9A46; backdrop-filter:blur(15px);
-}
-.countdown-timer span { font-size:3.2em; font-weight:700; color:#5A4E3A; font-family:'Playfair Display',serif; display:block; }
-.countdown-timer p { font-size:1.4em; color:#8B9A46; font-weight:600; margin-top:10px; }
-body.dark .countdown-timer > div { background:linear-gradient(135deg,rgba(44,44,44,0.98),rgba(26,26,26,0.98)); border-color:#D4AF37; }
-body.dark .countdown-timer span { color:#E8D5B7; }
-
-/* --- 9. CAST GRID --- */
-.cast-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:50px; padding:0 40px; margin-bottom:80px; }
-.cast-item {
-    background:linear-gradient(135deg,#F5F0E6,#EDE4D9); border-radius:50px; overflow:hidden;
-    box-shadow:0 35px 100px rgba(212,164,116,0.4); border:6px solid #D4AF37; transition:all 0.6s;
-}
-.cast-item img { width:100%; height:350px; object-fit:cover; border:18px solid #8B9A46; border-radius:45px; }
-.cast-item p { text-align:center; padding:30px; font-size:1.8em; font-weight:600; background:#F5F0E6; font-family:'Playfair Display',serif; color:#5A4E3A; }
-body.dark .cast-item { background:linear-gradient(135deg,#2C2C2C,#1A1A1A); border-color:#8B9A46; }
-body.dark .cast-item img { border-color:#D4AF37; }
-body.dark .cast-item p { background:#2C2C2C; color:#E8D5B7; }
-#cast-8a, #cast-8b { scroll-margin-top:120px; }
-
-/* --- 10. IMAGES & VIDEO --- */
-/* Zoomable Class */
-.zoomable { cursor: zoom-in; transition: transform 0.3s ease; }
-.zoomable:hover { transform: scale(1.02); }
-
-main img {
-    max-width:900px; width:100%; border-radius:50px; border:20px double #D4AF37;
-    box-shadow:0 40px 100px rgba(212,175,55,0.4);
-}
-main img[alt*="Brochure"] { border-color:#8B9A46; box-shadow:0 40px 100px rgba(139,154,70,0.4); }
-
-/* Video Player */
-video {
-    max-width: 100%; width: 100%; height: auto;
-    border-radius: 50px; border: 20px double #D4AF37;
-    box-shadow: 0 40px 120px rgba(212,175,55,0.45); background: #000; outline: none; transition: all 0.6s ease;
-}
-video:hover { border-color: #F5F0E6; box-shadow: 0 50px 140px rgba(212,175,55,0.65); transform: translateY(-8px); }
-body.dark video { border-color: #8B9A46; box-shadow: 0 40px 120px rgba(139,154,70,0.5); }
-body.dark video:hover { border-color: #E8D5B7; box-shadow: 0 50px 140px rgba(139,154,70,0.7); }
-
-.video-container { max-width: 1100px; margin: 60px auto; padding: 0 20px; text-align: center; }
-.video-wrapper { position: relative; display: inline-block; width: 100%; }
-
-/* Mobile */
-@media (max-width:768px) {
-    .logo h1 { font-size:4em !important; }
-    nav a { padding:18px 32px !important; font-size:1.4em !important; }
-    section h2 { font-size:3em !important; }
-    .secret-link { font-size:1.5em !important; }
-    .cast-nav-btn, .view-btn { font-size:1.4em; padding:18px 30px; }
-    .cast-item img { height:280px; }
-    video { border-width: 14px; border-radius: 40px; }
-}
-
-/* --- 11. FOOTERS --- */
-.page-footer { text-align: center; padding: 80px 20px 120px; margin-top: 60px; }
-.back-to-main, .back-to-top a {
-    display: inline-block; background: linear-gradient(45deg, #D4AF37, #8B9A46); color: #F5F0E6;
-    padding: 20px 50px; border-radius: 50px; font-family: 'Playfair Display', serif; font-size: 2em; font-weight: 700;
-    text-decoration: none; border: 6px solid #F5F0E6; box-shadow: 0 20px 60px rgba(212,175,55,0.5); transition: all 0.5s ease;
-}
-.back-to-main:hover, .back-to-top a:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 30px 80px rgba(212,175,55,0.7); }
-body.dark .back-to-main, body.dark .back-to-top a { background: linear-gradient(45deg, #8B9A46, #D4AF37); color: #2C2C2C; border-color: #E8D5B7; }
-.back-to-top { display: block; margin: 100px auto 60px; text-align: center; }
