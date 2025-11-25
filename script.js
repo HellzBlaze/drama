@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Countdown Logic
     const countdownEl = document.getElementById('countdown');
     if (countdownEl) {
-        const countdownDate = new Date('2025-11-30T17:30:00+05:30').getTime();
+        const countdownDate = new Date('2025-11-30T17:00:00+05:30').getTime();
         const updateCountdown = () => {
             const distance = countdownDate - new Date().getTime();
             if (distance < 0) {
