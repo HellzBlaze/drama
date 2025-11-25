@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
+/* --- 1. GLOBAL RESET & BASE --- */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
@@ -12,7 +13,7 @@ body {
 }
 body.dark { background: linear-gradient(to bottom, #2C2C2C 0%, #1A1A1A 100%); color: #E8D5B7; }
 
-/* Dark Mode Toggle */
+/* --- 2. DARK MODE TOGGLE --- */
 .dark-mode-toggle {
     position: fixed; top:20px; right:20px; background:linear-gradient(#D4A574,#B89468);
     color:#5A4E3A; padding:16px 32px; border-radius:50px; z-index:9999; font-weight:600;
@@ -24,7 +25,7 @@ body.dark .dark-mode-toggle { background:linear-gradient(#1A1A1A,#2C2C2C); color
 .dark-mode-toggle input { display:none; }
 .dark-mode-toggle label { cursor:pointer; }
 
-/* Header */
+/* --- 3. HEADER & LOGO --- */
 header {
     background: linear-gradient(to bottom, #8B9A46 0%, #6B7D3A 100%);
     padding:70px 30px; text-align:center; border-bottom:20px solid #D4AF37;
@@ -43,7 +44,7 @@ body.dark header { background:linear-gradient(to bottom,#1A1A1A,#2C2C2C); border
 @keyframes curtainRise { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
 body.dark .logo h1 { color:#E8D5B7; text-shadow:0 0 25px #2C2C2C, 0 0 50px #D4AF37, 0 0 75px #8B9A46; }
 
-/* Navigation */
+/* --- 4. NAVIGATION --- */
 nav { display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-top:40px; }
 nav a {
     background:linear-gradient(45deg,#F5F0E6,#EDE4D9); color:#5A4E3A; padding:22px 45px;
@@ -53,10 +54,11 @@ nav a {
 }
 nav a:hover { background:linear-gradient(45deg,#D4A574,#B89468); color:#F5F0E6; transform:translateY(-10px) rotate(2deg); }
 body.dark nav a { background:linear-gradient(45deg,#2C2C2C,#1A1A1A); color:#E8D5B7; border-color:#D4AF37; }
+
 .nav-countdown { background:linear-gradient(45deg,#D4AF37,#8B9A46)!important; color:#F5F0E6!important; border-color:#F5F0E6!important; animation:pulseGlow 3s infinite alternate; }
 @keyframes pulseGlow { from{box-shadow:0 0 30px rgba(212,175,55,0.6);} to{box-shadow:0 0 45px rgba(212,175,55,0.9);} }
 
-/* Sections */
+/* --- 5. MAIN CONTENT & TYPOGRAPHY --- */
 main { padding:90px 30px; max-width:1600px; margin:0 auto; }
 section h2 {
     font-family: 'Playfair Display', serif; font-size:4.2em; color:#D4A574;
@@ -68,11 +70,21 @@ section h2::after { content:''; display:block; width:140px; height:8px; backgrou
 .about { background:linear-gradient(135deg,rgba(245,240,230,0.95),rgba(237,228,217,0.95)); padding:60px; border-radius:50px; text-align:center; font-size:1.8em; border:16px double #8B9A46; max-width:1200px; margin:0 auto 100px; box-shadow:0 30px 90px rgba(139,154,70,0.3); backdrop-filter:blur(15px); }
 body.dark .about { background:linear-gradient(135deg,rgba(44,44,44,0.98),rgba(26,26,26,0.98)); border-color:#D4AF37; }
 
-/* Secret Library – Text Links */
-.secret-links {
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px; padding:0 40px; max-width:1200px; margin:0 auto 100px;
+/* --- 6. BUTTONS (View Options & Cast Nav) --- */
+/* Merged styles so 'view-btn' looks just like your original Cast buttons */
+.cast-nav, .view-options { text-align:center; margin:80px auto 60px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
+
+.cast-nav-btn, .view-btn {
+    display: inline-block;
+    background:linear-gradient(45deg,#D4AF37,#8B9A46); color:#F5F0E6; padding:20px 40px; border-radius:50px;
+    font-family:'Playfair Display',serif; font-size:1.7em; font-weight:700; text-decoration:none;
+    border:5px solid #F5F0E6; box-shadow:0 15px 45px rgba(212,175,55,0.4); transition:all 0.5s;
+    cursor: pointer;
 }
+.cast-nav-btn:hover, .view-btn:hover { transform:translateY(-10px) scale(1.05); }
+
+/* --- 7. SECRET LIBRARY & LINKS --- */
+.secret-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; padding:0 40px; max-width:1200px; margin:0 auto 100px; }
 .secret-link {
     background:linear-gradient(135deg,rgba(245,240,230,0.97),rgba(237,228,217,0.97));
     color:#5A4E3A; padding:35px 20px; border-radius:50px; text-align:center;
@@ -84,13 +96,12 @@ body.dark .about { background:linear-gradient(135deg,rgba(44,44,44,0.98),rgba(26
 .secret-link:hover { background:linear-gradient(135deg,#D4A574,#B89468); color:#F5F0E6; transform:translateY(-12px) scale(1.03); }
 body.dark .secret-link { background:linear-gradient(135deg,rgba(44,44,44,0.98),rgba(26,26,26,0.98)); color:#E8D5B7; border-color:#D4AF37; }
 
-/* Special Links – Invitation & Brochure */
+/* Special Link Colors */
 .invitation-link { background:linear-gradient(135deg,#D4AF37,#B89468)!important; color:#F5F0E6!important; border-color:#F5F0E6!important; font-weight:700; }
 .brochure-link   { background:linear-gradient(135deg,#8B9A46,#6B7D3A)!important; color:#F5F0E6!important; border-color:#D4AF37!important; font-weight:700; }
-body.dark .invitation-link,
-body.dark .brochure-link { color:#2C2C2C!important; }
+body.dark .invitation-link, body.dark .brochure-link { color:#2C2C2C!important; }
 
-/* Countdown */
+/* --- 8. COUNTDOWN --- */
 .countdown-section { text-align:center; padding:80px 30px; max-width:1100px; margin:0 auto 100px; }
 .countdown-timer { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; }
 .countdown-timer > div {
@@ -103,21 +114,7 @@ body.dark .brochure-link { color:#2C2C2C!important; }
 body.dark .countdown-timer > div { background:linear-gradient(135deg,rgba(44,44,44,0.98),rgba(26,26,26,0.98)); border-color:#D4AF37; }
 body.dark .countdown-timer span { color:#E8D5B7; }
 
-/* Cast Section & View Buttons */
-/* NOTE: We apply these styles to both .cast-nav AND .view-options to support your new HTML */
-.cast-nav, .view-options { 
-    text-align:center; margin:80px auto 60px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap; 
-}
-
-/* NOTE: We apply these styles to both .cast-nav-btn AND .view-btn */
-.cast-nav-btn, .view-btn {
-    background:linear-gradient(45deg,#D4AF37,#8B9A46); color:#F5F0E6; padding:20px 40px; border-radius:50px;
-    font-family:'Playfair Display',serif; font-size:1.7em; font-weight:700; text-decoration:none;
-    border:5px solid #F5F0E6; box-shadow:0 15px 45px rgba(212,175,55,0.4); transition:all 0.5s;
-    display: inline-block; /* Added for view-btn compatibility */
-}
-.cast-nav-btn:hover, .view-btn:hover { transform:translateY(-10px) scale(1.05); }
-
+/* --- 9. CAST GRID --- */
 .cast-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:50px; padding:0 40px; margin-bottom:80px; }
 .cast-item {
     background:linear-gradient(135deg,#F5F0E6,#EDE4D9); border-radius:50px; overflow:hidden;
@@ -128,15 +125,31 @@ body.dark .countdown-timer span { color:#E8D5B7; }
 body.dark .cast-item { background:linear-gradient(135deg,#2C2C2C,#1A1A1A); border-color:#8B9A46; }
 body.dark .cast-item img { border-color:#D4AF37; }
 body.dark .cast-item p { background:#2C2C2C; color:#E8D5B7; }
-
 #cast-8a, #cast-8b { scroll-margin-top:120px; }
 
-/* Invitation & Brochure Pages – Full Image Styling */
+/* --- 10. IMAGES & VIDEO --- */
+/* Zoomable Class */
+.zoomable { cursor: zoom-in; transition: transform 0.3s ease; }
+.zoomable:hover { transform: scale(1.02); }
+
 main img {
     max-width:900px; width:100%; border-radius:50px; border:20px double #D4AF37;
     box-shadow:0 40px 100px rgba(212,175,55,0.4);
 }
 main img[alt*="Brochure"] { border-color:#8B9A46; box-shadow:0 40px 100px rgba(139,154,70,0.4); }
+
+/* Video Player */
+video {
+    max-width: 100%; width: 100%; height: auto;
+    border-radius: 50px; border: 20px double #D4AF37;
+    box-shadow: 0 40px 120px rgba(212,175,55,0.45); background: #000; outline: none; transition: all 0.6s ease;
+}
+video:hover { border-color: #F5F0E6; box-shadow: 0 50px 140px rgba(212,175,55,0.65); transform: translateY(-8px); }
+body.dark video { border-color: #8B9A46; box-shadow: 0 40px 120px rgba(139,154,70,0.5); }
+body.dark video:hover { border-color: #E8D5B7; box-shadow: 0 50px 140px rgba(139,154,70,0.7); }
+
+.video-container { max-width: 1100px; margin: 60px auto; padding: 0 20px; text-align: center; }
+.video-wrapper { position: relative; display: inline-block; width: 100%; }
 
 /* Mobile */
 @media (max-width:768px) {
@@ -146,129 +159,16 @@ main img[alt*="Brochure"] { border-color:#8B9A46; box-shadow:0 40px 100px rgba(1
     .secret-link { font-size:1.5em !important; }
     .cast-nav-btn, .view-btn { font-size:1.4em; padding:18px 30px; }
     .cast-item img { height:280px; }
-}
-/* ——— VIDEO PLAYER – WALDORF STYLE ——— */
-video {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    border-radius: 50px;
-    border: 20px double #D4AF37;
-    box-shadow: 0 40px 120px rgba(212,175,55,0.45);
-    background: #000;
-    outline: none;
-    transition: all 0.6s ease;
-}
-video:hover {
-    border-color: #F5F0E6;
-    box-shadow: 0 50px 140px rgba(212,175,55,0.65);
-    transform: translateY(-8px);
+    video { border-width: 14px; border-radius: 40px; }
 }
 
-/* Dark Mode */
-body.dark video {
-    border-color: #8B9A46;
-    box-shadow: 0 40px 120px rgba(139,154,70,0.5);
+/* --- 11. FOOTERS --- */
+.page-footer { text-align: center; padding: 80px 20px 120px; margin-top: 60px; }
+.back-to-main, .back-to-top a {
+    display: inline-block; background: linear-gradient(45deg, #D4AF37, #8B9A46); color: #F5F0E6;
+    padding: 20px 50px; border-radius: 50px; font-family: 'Playfair Display', serif; font-size: 2em; font-weight: 700;
+    text-decoration: none; border: 6px solid #F5F0E6; box-shadow: 0 20px 60px rgba(212,175,55,0.5); transition: all 0.5s ease;
 }
-body.dark video:hover {
-    border-color: #E8D5B7;
-    box-shadow: 0 50px 140px rgba(139,154,70,0.7);
-}
-
-/* Full-width centered container for videos (used in vid1.html etc.) */
-.video-container {
-    max-width: 1100px;
-    margin: 60px auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-/* Optional: Add a golden play button overlay (pure CSS) */
-.video-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-.video-wrapper::before {
-    content: "▶";
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 6em;
-    color: rgba(245,240,230,0.9);
-    text-shadow: 0 0 40px #D4AF37;
-    opacity: 0.7;
-    pointer-events: none;
-    z-index: 2;
-    transition: all 0.4s ease;
-}
-.video-wrapper:hover::before { opacity: 0.9; transform: translate(-50%, -50%) scale(1.15); }
-body.dark .video-wrapper::before { color: rgba(232,213,183,0.9); text-shadow: 0 0 40px #8B9A46; }
-
-/* Mobile */
-@media (max-width:768px) {
-    video {
-        border-width: 14px;
-        border-radius: 40px;
-    }
-    .video-wrapper::before { font-size: 4em; }
-}
-
-/* FOOTER BACK BUTTON – ALL INDIVIDUAL PAGES */
-.page-footer {
-    text-align: center;
-    padding: 80px 20px 120px;
-    margin-top: 60px;
-}
-.back-to-main {
-    display: inline-block;
-    background: linear-gradient(45deg, #D4AF37, #8B9A46);
-    color: #F5F0E6;
-    padding: 20px 50px;
-    border-radius: 50px;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2em;
-    font-weight: 700;
-    text-decoration: none;
-    border: 6px solid #F5F0E6;
-    box-shadow: 0 20px 60px rgba(212,175,55,0.5);
-    transition: all 0.5s ease;
-}
-.back-to-main:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 30px 80px rgba(212,175,55,0.7);
-}
-body.dark .back-to-main {
-    background: linear-gradient(45deg, #8B9A46, #D4AF37);
-    color: #2C2C2C;
-    border-color: #E8D5B7;
-}
-/* BACK TO TOP BUTTON – CAST SECTION */
-.back-to-top {
-    display: block;
-    margin: 100px auto 60px;
-    text-align: center;
-}
-.back-to-top a {
-    display: inline-block;
-    background: linear-gradient(45deg, #D4AF37, #8B9A46);
-    color: #F5F0E6;
-    padding: 20px 50px;
-    border-radius: 50px;
-    font-family: 'Playfair Display', serif;
-    font-size: 2em;
-    font-weight: 700;
-    text-decoration: none;
-    border: 6px solid #F5F0E6;
-    box-shadow: 0 20px 60px rgba(212,175,55,0.5);
-    transition: all 0.5s ease;
-}
-.back-to-top a:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 30px 80px rgba(212,175,55,0.7);
-}
-body.dark .back-to-top a {
-    background: linear-gradient(45deg, #8B9A46, #D4AF37);
-    color: #2C2C2C;
-    border-color: #E8D5B7;
-}
+.back-to-main:hover, .back-to-top a:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 30px 80px rgba(212,175,55,0.7); }
+body.dark .back-to-main, body.dark .back-to-top a { background: linear-gradient(45deg, #8B9A46, #D4AF37); color: #2C2C2C; border-color: #E8D5B7; }
+.back-to-top { display: block; margin: 100px auto 60px; text-align: center; }
