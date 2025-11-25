@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
 /* --- 1. GLOBAL RESET & BASE --- */
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -172,3 +172,47 @@ body.dark video:hover { border-color: #E8D5B7; box-shadow: 0 50px 140px rgba(139
 .back-to-main:hover, .back-to-top a:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 30px 80px rgba(212,175,55,0.7); }
 body.dark .back-to-main, body.dark .back-to-top a { background: linear-gradient(45deg, #8B9A46, #D4AF37); color: #2C2C2C; border-color: #E8D5B7; }
 .back-to-top { display: block; margin: 100px auto 60px; text-align: center; }
+/* --- INVITATION PAGE STYLES --- */
+.invitation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--bg-color); /* Matches theme */
+}
+
+.invitation-image {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 10px solid #D4AF37; /* Gold border */
+    margin-bottom: 40px;
+}
+
+.invitation-details {
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(245,240,230,0.5), rgba(237,228,217,0.5));
+    border-radius: 20px;
+    border: 2px solid #D4AF37;
+    margin-top: 20px;
+}
+
+/* Dark mode adjustment for the details box */
+body.dark .invitation-details {
+    background: rgba(255,255,255,0.05);
+    border-color: #8B9A46;
+}
+
+.event-info {
+    font-size: 1.4em;
+    margin: 20px 0;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.event-note {
+    font-style: italic;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
