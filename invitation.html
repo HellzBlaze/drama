@@ -3,31 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation | 8th Grade Drama</title>
-    <link rel="stylesheet" href="style.css">
-    <style>@media print { body { display:none; } }</style>
+    <title>Invitation: An Evening Where Drama Comes Alive!</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Styles specific to the single image invitation */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8; /* Light background for contrast */
+            text-align: center;
+        }
+        .invitation-container {
+            width: 95%;
+            max-width: 800px; /* Set a maximum width for presentation */
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .invitation-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            border-radius: 5px;
+        }
+        .back-link {
+            /* Styles to match the general theme or the new buttons we added */
+            display: inline-block;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding: 12px 24px;
+            background-color: #333; 
+            color: white;
+            text-decoration: none;
+            border-radius: 5px; 
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
-    <div class="dark-mode-toggle">
-        <input type="checkbox" id="darkMode"><label for="darkMode">Dark Mode</label>
+    <div class="invitation-container">
+        <img src="final_invitation.jpg" alt="Official Invitation from Prerana Waldorf School: An Evening Where Drama Comes Alive!" class="invitation-image">
     </div>
-
-    <header>
-        <div class="logo"><h1>Invitation</h1></div>
-    </header>
-
-    <main style="text-align:center; padding:60px 20px;">
-        <h2>Official Invitation (2 Pages)</h2>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:80px; margin:60px 20px;">
-            <img src="invitation-front.jpg" alt="Front" style="max-width:900px; width:100%; border-radius:50px; border:20px double #D4AF37; box-shadow:0 40px 100px rgba(212,175,55,.4);">
-            <img src="invitation-back.jpg" alt="Back" style="max-width:900px; width:100%; border-radius:50px; border:20px double #D4AF37; box-shadow:0 40px 100px rgba(212,175,55,.4);">
-        </div>
-    </main>
-
-    <div class="page-footer">
-        <a href="index.html" class="back-to-main">Back to Main</a>
-    </div>
-
-    <script src="script.js"></script>
+    <a href="index.html" class="back-link">← Back to Main Page</a>
 </body>
 </html>
