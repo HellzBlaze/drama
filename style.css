@@ -270,26 +270,40 @@ body.dark .video-wrapper {
     box-shadow: 0 40px 120px rgba(139,154,70,0.5);
 }
 
-/* --- RSVP BUTTON (Pulsing Animation) --- */
+/* --- RSVP BUTTON (Same Size as Countdown) --- */
 .rsvp-btn {
-    background: linear-gradient(135deg, #8B0000, #B22222) !important; /* Drama Red */
+    /* distinct Red/Gold Colors */
+    background: linear-gradient(135deg, #8B0000, #B22222) !important; 
     color: #F5F0E6 !important;
-    border: 3px solid #D4AF37 !important; /* Gold Border */
-    font-weight: 800 !important;
-    letter-spacing: 1px;
+    border: 5px solid #D4AF37 !important; /* Matches standard nav border width */
+    
+    /* MATCHING SIZE EXACTLY */
+    padding: 22px 45px !important;    /* Matches 'nav a' padding */
+    font-size: 1.7em !important;      /* Matches 'nav a' font size */
+    font-weight: 700 !important;      /* Matches 'nav a' weight */
+    border-radius: 50px !important;
+    
+    /* Animation */
     box-shadow: 0 0 20px rgba(139,0,0,0.4);
-    animation: rsvpPulse 2s infinite ease-in-out;
+    animation: rsvpPulse 3s infinite alternate;
 }
 
 .rsvp-btn:hover {
     background: linear-gradient(135deg, #B22222, #8B0000) !important;
+    transform: translateY(-10px) rotate(2deg) !important; /* Matches nav hover effect */
     color: #fff !important;
-    transform: translateY(-5px) !important;
 }
 
-/* Pulsing Animation Keyframes */
+/* Subtle Pulse (Matches rhythm of Countdown) */
 @keyframes rsvpPulse {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); transform: scale(1); }
-    70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); transform: scale(1.03); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); transform: scale(1); }
+    from { box-shadow: 0 0 20px rgba(139,0,0,0.4); transform: scale(1); }
+    to { box-shadow: 0 0 35px rgba(139,0,0,0.7); transform: scale(1.02); }
+}
+
+/* Mobile Adjustment to match other buttons */
+@media (max-width: 768px) {
+    .rsvp-btn {
+        padding: 18px 32px !important;
+        font-size: 1.4em !important;
+    }
 }
