@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Dark Mode Logic
+    // 1. Dark Mode
     const dm = document.getElementById('darkMode');
     if (localStorage.getItem('darkMode') === 'enabled') { 
         document.body.classList.add('dark'); 
@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Countdown Logic
+    // 2. Countdown
     const countdownEl = document.getElementById('countdown');
     if (countdownEl) {
-        const countdownDate = new Date('2025-11-30T17:00:00+05:30').getTime();
+        const countdownDate = new Date('2025-11-30T17:30:00+05:30').getTime();
         const updateCountdown = () => {
             const distance = countdownDate - new Date().getTime();
             if (distance < 0) {
@@ -36,62 +36,34 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCountdown();
     }
 
-    // 3. ENHANCED IMAGE ZOOM (Cast + Brochure + Invitation)
+    // 3. Image Zoom
     const imagesToZoom = document.querySelectorAll('.cast-item img, .zoomable');
-
     imagesToZoom.forEach(img => {
         img.style.cursor = 'zoom-in';
         img.title = "Click to View Full Size";
-        
         img.onclick = (e) => {
             e.preventDefault();
-            
-            // Create Overlay
             const overlay = document.createElement('div');
-            overlay.style.cssText = `
-                position: fixed; inset: 0; 
-                background: rgba(0,0,0,0.95); 
-                display: flex; align-items: center; justify-content: center; 
-                z-index: 99999; cursor: zoom-out; opacity: 0; transition: opacity 0.3s;
-            `;
-
-            // Create Large Image
-            const big = new Image(); 
-            big.src = img.src;
-            big.style.cssText = `
-                max-width: 95%; max-height: 95%; 
-                border: 10px solid #D4AF37; border-radius: 20px; 
-                box-shadow: 0 0 50px rgba(212,175,55,0.5);
-                transform: scale(0.9); transition: transform 0.3s;
-            `;
-
-            overlay.appendChild(big); 
-            document.body.appendChild(overlay);
-
-            requestAnimationFrame(() => {
-                overlay.style.opacity = '1';
-                big.style.transform = 'scale(1)';
-            });
-
-            overlay.onclick = () => {
-                overlay.style.opacity = '0';
-                big.style.transform = 'scale(0.9)';
-                setTimeout(() => overlay.remove(), 300);
-            };
+            overlay.style.cssText = `position:fixed; inset:0; background:rgba(0,0,0,0.95); display:flex; align-items:center; justify-content:center; z-index:99999; cursor:zoom-out; opacity:0; transition:opacity 0.3s;`;
+            const big = new Image(); big.src = img.src;
+            big.style.cssText = `max-width:95%; max-height:95%; border:10px solid #D4AF37; border-radius:20px; box-shadow:0 0 50px rgba(212,175,55,0.5); transform:scale(0.9); transition:transform 0.3s;`;
+            overlay.appendChild(big); document.body.appendChild(overlay);
+            requestAnimationFrame(() => { overlay.style.opacity = '1'; big.style.transform = 'scale(1)'; });
+            overlay.onclick = () => { overlay.style.opacity = '0'; big.style.transform = 'scale(0.9)'; setTimeout(() => overlay.remove(), 300); };
         };
     });
 });
 
-// 4. VIDEO FULLSCREEN HELPER
-function toggleFullScreen(videoId) {
-    const video = document.getElementById(videoId);
-    if (!video) return;
+// 4. UPDATED FULLSCREEN LOGIC (Works for YouTube Wrappers)
+function toggleFullScreen(elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
     
-    if (video.requestFullscreen) {
-        video.requestFullscreen();
-    } else if (video.webkitRequestFullscreen) { /* Safari */
-        video.webkitRequestFullscreen();
-    } else if (video.msRequestFullscreen) { /* IE11 */
-        video.msRequestFullscreen();
+    if (el.requestFullscreen) {
+        el.requestFullscreen();
+    } else if (el.webkitRequestFullscreen) { /* Safari */
+        el.webkitRequestFullscreen();
+    } else if (el.msRequestFullscreen) { /* IE11 */
+        el.msRequestFullscreen();
     }
 }
